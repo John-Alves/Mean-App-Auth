@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -66,6 +67,7 @@ let materialModules = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
+  FlexLayoutModule,
 ];
 
 @NgModule({
@@ -78,4 +80,4 @@ let materialModules = [
     ...materialModules,
   ]
 })
-export class AngularMaterialModule { }
+export class MaterialModule { }

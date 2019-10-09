@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,12 +17,16 @@ export class RegisterComponent implements OnInit {
       'telephone': [ '', Validators.required ],
       'cpf': [ '', Validators.required ],
       'login': [ '', Validators.required ],
-      'password': [ '', Validators.required, Validators.minLength(6) ],
-      'password_confirmation': [ '', Validators.required ],
+      'password': [ '', [ Validators.required, Validators.minLength(6) ] ],
+      'password_confirmation': [ '', [ Validators.required ] ],
     }, { validator: this.matchingPasswords }
   );
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private router: Router,
+    private fb: FormBuilder, 
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
@@ -37,7 +44,19 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-
+    let user: User = { ...this.formRegister.value };
+    this.authService.register(user)
+      .subscribe(
+        (userResponse) => {
+          alert('Criado com sucesso');
+          this.router.navigateByUrl('/auth/login');
+        },
+        (err) => {
+          alert('Erro ao criar');
+          console.log(err.error.message);          
+        }
+      )
+    console.log(user);
   }
 
 }

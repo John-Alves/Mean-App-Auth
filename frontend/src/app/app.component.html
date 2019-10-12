@@ -1,15 +1,32 @@
 <mat-toolbar>
-    My App
+    MEAN APP 
     <span fxFlex></span>
     <div>
-        <button mat-button routerLink="/auth/login">
+        <ng-container *ngIf="!(isAuthenticated$ | async)">
+            <button mat-button routerLink="/auth/login">
             <mat-icon>input</mat-icon>
-            Entrar
-        </button>
-        <button mat-button routerLink="/auth/register">
-            <mat-icon>person_add</mat-icon>
-            Cadastre-se
-        </button>
+                Entrar
+            </button>
+            <button mat-button routerLink="/auth/register">
+                <mat-icon>person_add</mat-icon>
+                Cadastre-se
+            </button>
+        </ng-container>
+        
+        <ng-container *ngIf="(isAuthenticated$ | async) && (currentUser$ | async)">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+
+            <mat-menu #appMenu="matMenu" yPosition="above">
+                <p class="greetings">Bem vindo: <small>{{ (currentUser$ | async)?.name }}</small></p>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Sair
+                </button>
+            </mat-menu>
+        </ng-container>
     </div>
 </mat-toolbar>
 

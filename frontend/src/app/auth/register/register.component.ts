@@ -48,11 +48,9 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user)
       .subscribe(
         (userResponse) => {
-          alert('Criado com sucesso');
           this.router.navigateByUrl('/auth/login');
         },
         (err) => {
-          alert('Erro ao criar');
           console.log(err.error.message);          
         }
       )

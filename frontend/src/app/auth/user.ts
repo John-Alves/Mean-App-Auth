@@ -1,11 +1,12 @@
 export interface User {
-    name: String,
-    email: String,
-    telephone: String,
-    cpf: String,
+    name: string,
+    email: string,
+    telephone: string,
+    cpf: string,
     
-    login: String,
-    password?: String
+    login: string,
+    password?: string
     
-    _id?: String,
+    token?: string,
+    _id?: string,
 }

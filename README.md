@@ -1,6 +1,12 @@
-# Simple MEAN (MongoDB, Express and Angular) application.
+## Simple MEAN (MongoDB, Express and Angular) application with Authentication.
 
-## Notes
+To deploy application, go to `frontend/` folder and run 
+<pre>
+yarn build-front. 
+</pre>
+<i>This command will build the angular project and copy files to `backend/public` to be served by Express.</i>
+
+#### Notes
 1. MongoDB connection error.
    
 <pre>

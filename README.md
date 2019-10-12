@@ -2,7 +2,7 @@
 
 To deploy application, go to `frontend/` folder and run 
 <pre>
-yarn build-front. 
+yarn build-front
 </pre>
 <i>This command will build the angular project and copy files to `backend/public` to be served by Express.</i>
 
